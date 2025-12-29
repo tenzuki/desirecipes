@@ -1,0 +1,13 @@
+{
+  "name": "desi-recipies",
+  "version": "1.0.0",
+  "description": "Desi Recipies - Recipe search and AI cooking assistant",
+  "scripts": {
+    "build": "node build-config-vercel.js",
+    "vercel-build": "node build-config-vercel.js"
+  },
+  "keywords": ["recipes", "cooking", "ai"],
+  "author": "",
+  "license": "MIT"
+}
+
