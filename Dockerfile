@@ -16,21 +16,25 @@ COPY index.html styles.css app.js indian-kerala-recipes.js vercel.json /usr/shar
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Build config.js from environment variables
-# Railway will provide these as environment variables during build
-# For local development: use .env file (see ENV_SETUP.md)
-ENV GROQ_API_KEY=${GROQ_API_KEY:-}
-ENV AI_SERVICE=${AI_SERVICE:-groq}
-ENV HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY:-}
-ENV GEMINI_API_KEY=${GEMINI_API_KEY:-}
-ENV OPENAI_API_KEY=${OPENAI_API_KEY:-}
+# Copy build script (will be used at runtime)
+COPY build-config.js /usr/share/nginx/html/
 
-# Generate config.js using build script
-RUN node build-config.js
+# Railway uses dynamic PORT and environment variables at runtime
+# Create startup script that generates config.js and starts nginx
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo 'set -e' >> /start.sh && \
+    echo 'PORT=${PORT:-80}' >> /start.sh && \
+    echo 'echo "Generating config.js from environment variables..."' >> /start.sh && \
+    echo 'node /usr/share/nginx/html/build-config.js' >> /start.sh && \
+    echo 'echo "Updating nginx to listen on port $PORT..."' >> /start.sh && \
+    echo 'sed -i "s/listen 80;/listen $PORT;/g" /etc/nginx/conf.d/default.conf' >> /start.sh && \
+    echo 'echo "Starting nginx on port $PORT"' >> /start.sh && \
+    echo 'exec nginx -g "daemon off;"' >> /start.sh && \
+    chmod +x /start.sh
 
-# Expose port 80
+# Expose port (Railway will set PORT dynamically)
 EXPOSE 80
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start nginx using startup script
+CMD ["/start.sh"]
 
