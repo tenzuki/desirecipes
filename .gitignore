@@ -1,5 +1,6 @@
 # API Keys and Sensitive Data
 config.js
+# Note: config.js is generated at build time from environment variables
 
 # Node modules (if you add any)
 node_modules/
@@ -7,6 +8,7 @@ node_modules/
 # Environment files
 .env
 .env.local
+# Keep .env.example in Git (template file)
 
 # OS files
 .DS_Store

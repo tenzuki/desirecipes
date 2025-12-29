@@ -1,6 +1,10 @@
 // Configuration file for API keys
-// IMPORTANT: For production use, never commit this file with real API keys
-// Use environment variables or a secure backend instead
+// This file is generated at build time from .env file or environment variables
+// For local development: Create .env file (see .env.example)
+// For Railway: Add environment variables in Railway dashboard
+
+// Try to load from .env file (for local development)
+// For production (Railway), this will be generated from environment variables during Docker build
 
 const CONFIG = {
     // AI Service Configuration
@@ -9,9 +13,9 @@ const CONFIG = {
     
     // Groq API (FREE - Fast & Generous Free Tier)
     // Get API key from: https://console.groq.com/keys
-    // Free tier: Very generous, fast responses
-    // For Vercel: Add GROQ_API_KEY as environment variable in Vercel dashboard
-    GROQ_API_KEY: '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', // Your API key (will work on Vercel too)
+    // For local: Add to .env file
+    // For Railway: Add as environment variable
+    GROQ_API_KEY: '', // Will be set from .env or environment variables
     
     // Hugging Face (FREE - No API key needed for some models!)
     // Works without API key for basic models
