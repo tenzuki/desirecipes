@@ -34,6 +34,11 @@ body {
     overflow-x: hidden;
     position: relative;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent text size adjustment on mobile */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 /* Background Effects */
@@ -817,57 +822,595 @@ body {
     color: var(--text-secondary);
 }
 
-/* Responsive */
+/* Responsive - Mobile First Approach */
 @media (max-width: 768px) {
     .app-container {
-        padding: 0 16px;
+        padding: 0 12px;
     }
 
     .nav {
         flex-direction: column;
-        gap: 20px;
+        gap: 16px;
         align-items: stretch;
+        padding: 16px 0;
+        margin-bottom: 24px;
+    }
+
+    .nav-brand {
+        font-size: 1.25rem;
+        justify-content: center;
+    }
+
+    .brand-icon {
+        font-size: 1.5rem;
     }
 
     .nav-tabs {
         width: 100%;
         justify-content: stretch;
+        padding: 4px;
+        gap: 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        /* Allow horizontal scroll if tabs overflow */
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Show scroll indicator on mobile if tabs overflow */
+    .nav-tabs::after {
+        content: '';
+        flex-shrink: 0;
+        width: 1px;
     }
 
     .nav-tab {
         flex: 1;
         justify-content: center;
+        padding: 12px 8px;
+        font-size: 0.85rem;
+        min-width: 80px;
+        max-width: 120px;
+        touch-action: manipulation;
+        white-space: nowrap;
     }
 
     .nav-tab-label {
         display: none;
     }
 
+    .nav-tab-icon {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        margin-bottom: 32px;
+    }
+
     .hero-title {
-        font-size: 2.5rem;
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        margin-bottom: 12px;
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
+        padding: 0 8px;
+    }
+
+    .search-section {
+        margin-bottom: 24px;
+    }
+
+    .search-container {
+        max-width: 100%;
     }
 
     .search-input-wrapper {
         flex-direction: column;
-        padding: 12px;
+        padding: 8px;
+        gap: 8px;
+        border-radius: 12px;
+    }
+
+    .search-icon {
+        display: none;
+    }
+
+    .search-input {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
     }
 
     .search-button, .add-button {
         width: 100%;
         justify-content: center;
+        padding: 14px 24px;
+        font-size: 1rem;
+        min-height: 48px; /* Better touch target */
+        touch-action: manipulation;
+    }
+
+    .primary-button {
+        padding: 16px 24px;
+        font-size: 1rem;
+        min-height: 48px;
+        margin-top: 20px;
+        touch-action: manipulation;
+    }
+
+    .ingredients-container {
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .ingredient-tag {
+        padding: 10px 14px;
+        font-size: 0.85rem;
     }
 
     .results-container {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .recipe-card {
+        border-radius: 16px;
     }
 
     .recipe-card-content {
+        padding: 20px 16px;
+    }
+
+    .recipe-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .recipe-meta {
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 0.85rem;
+    }
+
+    .serving-controls {
+        padding: 12px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .serving-controls label {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .serving-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+        touch-action: manipulation;
+    }
+
+    .serving-input {
+        width: 70px;
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+
+    .recipe-section {
+        margin-bottom: 20px;
+    }
+
+    .recipe-section h4 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    .ingredients-list li {
+        padding: 12px 0;
+        padding-left: 32px;
+        font-size: 0.9rem;
+    }
+
+    .steps-list li {
+        padding: 14px 0;
+        padding-left: 56px;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .steps-list li::before {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+        top: 14px;
+    }
+
+    .match-info {
+        padding: 16px;
+        margin-top: 16px;
+        font-size: 0.9rem;
+    }
+
+    .no-results {
+        padding: 40px 24px;
+    }
+
+    .no-results::before {
+        font-size: 3rem;
+        margin-bottom: 16px;
+    }
+
+    .no-results p {
+        font-size: 1rem;
+    }
+
+    /* AI Assistant Mobile */
+    .ai-container {
+        max-width: 100%;
+    }
+
+    .ai-header {
+        flex-direction: column;
+        text-align: center;
         padding: 20px;
+        margin-bottom: 24px;
+    }
+
+    .ai-avatar {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 12px;
+    }
+
+    .ai-header-text h2 {
+        font-size: 1.25rem;
+    }
+
+    .ai-header-text p {
+        font-size: 0.9rem;
+    }
+
+    .ai-chat-container {
+        height: 400px;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .ai-message {
+        max-width: 90%;
+        gap: 8px;
+    }
+
+    .ai-message-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .ai-message-content {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+        border-radius: 12px;
+    }
+
+    .ai-input-container {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .ai-input-wrapper {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .ai-input {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 12px;
+    }
+
+    .ai-send-button {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+    }
+
+    .ai-suggestions {
+        gap: 8px;
+    }
+
+    .suggestion-chip {
+        padding: 10px 14px;
+        font-size: 0.8rem;
+        touch-action: manipulation;
+    }
+
+    /* Contact Form Mobile */
+    .contact-container {
+        max-width: 100%;
+    }
+
+    .contact-header {
+        padding: 24px 16px;
+        margin-bottom: 24px;
+    }
+
+    .contact-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-header p {
+        font-size: 0.95rem;
+    }
+
+    .contact-form {
+        padding: 20px 16px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 12px;
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+    }
+
+    .contact-submit-btn {
+        padding: 16px 24px;
+        font-size: 1rem;
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 0 10px;
+    }
+
+    .nav {
+        padding: 12px 0;
+        margin-bottom: 20px;
+    }
+
+    .nav-brand {
+        font-size: 1.1rem;
+    }
+
+    .nav-tab {
+        padding: 10px 6px;
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+
+    .nav-tab-icon {
+        font-size: 1.1rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.5rem, 10vw, 2rem);
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .search-input-wrapper {
+        padding: 6px;
+    }
+
+    .search-input {
+        padding: 12px 14px;
+    }
+
+    .recipe-card-content {
+        padding: 16px 12px;
+    }
+
+    .recipe-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .serving-controls {
+        padding: 10px;
+    }
+
+    .serving-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+
+    .serving-input {
+        width: 60px;
+        padding: 8px;
+    }
+
+    .ai-chat-container {
+        height: 350px;
+        padding: 12px;
+    }
+
+    .ai-message {
+        max-width: 95%;
+    }
+
+    .ai-input-container {
+        padding: 12px;
+    }
+
+    .contact-header {
+        padding: 20px 12px;
+    }
+
+    .contact-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .contact-form {
+        padding: 16px 12px;
+    }
+
+    .cuisine-title {
+        font-size: 1.75rem;
+    }
+
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        margin-bottom: 24px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .ai-chat-container {
+        height: 300px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets for mobile */
+    .nav-tab,
+    .search-button,
+    .add-button,
+    .primary-button,
+    .ai-send-button,
+    .contact-submit-btn,
+    .suggestion-chip {
+        min-height: 44px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .recipe-card:hover {
+        transform: none;
+        border-color: var(--border-color);
+        box-shadow: none;
+        background: var(--bg-card);
+    }
+
+    .recipe-card:hover::before {
+        transform: scaleX(0);
+    }
+
+    .nav-tab:hover::before {
+        opacity: 0;
+    }
+
+    .search-button:hover,
+    .add-button:hover,
+    .primary-button:hover,
+    .ai-send-button:hover,
+    .contact-submit-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Better focus states for touch */
+    .search-input:focus,
+    .ai-input:focus,
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    /* Active states for better feedback */
+    .nav-tab:active,
+    .search-button:active,
+    .add-button:active,
+    .primary-button:active,
+    .ai-send-button:active,
+    .contact-submit-btn:active,
+    .suggestion-chip:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+}
+
+/* Prevent layout shift on mobile */
+@media (max-width: 768px) {
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Better scrolling on iOS */
+    .ai-chat-container,
+    .results-container {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent horizontal scroll */
+    * {
+        max-width: 100%;
+    }
+
+    /* Better text rendering on mobile */
+    .recipe-card h3,
+    .hero-title,
+    .nav-brand {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    /* Improve button tap feedback */
+    button,
+    .nav-tab,
+    .suggestion-chip {
+        -webkit-tap-highlight-color: rgba(99, 102, 241, 0.2);
+        tap-highlight-color: rgba(99, 102, 241, 0.2);
+    }
+
+    /* Better form input appearance on mobile */
+    input,
+    textarea,
+    select {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 12px;
+    }
+
+    /* Improve select dropdown on mobile */
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        background-size: 12px;
+        padding-right: 40px;
     }
 }
 
@@ -1190,28 +1733,6 @@ body {
     color: var(--text-tertiary);
 }
 
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .recipe-card h3 {
-        font-size: 1.5rem;
-    }
-
-    .ai-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .ai-message {
-        max-width: 95%;
-    }
-
-    .ai-chat-container {
-        height: 400px;
-    }
-}
 
 /* Indian & Kerala Recipes Styles */
 .cuisine-header {
@@ -1468,29 +1989,3 @@ body {
     margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
-    .cuisine-title {
-        font-size: 2rem;
-    }
-    
-    .cuisine-filters {
-        justify-content: flex-start;
-    }
-    
-    .filter-btn {
-        font-size: 0.85rem;
-        padding: 8px 16px;
-    }
-    
-    .contact-form {
-        padding: 24px 20px;
-    }
-    
-    .contact-header {
-        padding: 24px 20px;
-    }
-    
-    .contact-header h2 {
-        font-size: 1.5rem;
-    }
-}
