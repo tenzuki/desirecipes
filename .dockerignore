@@ -1,0 +1,38 @@
+# Git files
+.git
+.gitignore
+
+# Documentation
+*.md
+README.md
+DEPLOY*.md
+FIX*.md
+QUICK*.md
+FRESH*.md
+FREE*.md
+AI*.md
+HOW*.md
+CLEAN*.md
+PUSH*.md
+TEST*.md
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node modules (if any)
+node_modules
+
+# Environment files (keep config.js - needed for deployment)
+.env
+.env.local
+
