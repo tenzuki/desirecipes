@@ -2,6 +2,8 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": ".",
-  "framework": null
+  "framework": null,
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
+  "installCommand": "echo 'No install needed'"
 }
 
