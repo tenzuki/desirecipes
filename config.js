@@ -1,53 +1,11 @@
 // Configuration file for API keys
-// This file is generated at build time from .env file or environment variables
-// For local development: Create .env file (see .env.example)
-// For Railway: Add environment variables in Railway dashboard
-
-// Try to load from .env file (for local development)
-// For production (Railway), this will be generated from environment variables during Docker build
+// Generated from .env file for local development
 
 const CONFIG = {
-    // AI Service Configuration
-    // Options: 'free', 'groq', 'huggingface', 'openai', 'gemini'
-    AI_SERVICE: 'groq', // Default to Groq (free and fast!)
-    
-    // Groq API (FREE - Fast & Generous Free Tier)
-    // Get API key from: https://console.groq.com/keys
-    // For local: Add to .env file
-    // For Railway: Add as environment variable
-    GROQ_API_KEY: '', // Will be set from .env or environment variables
-    
-    // Hugging Face (FREE - No API key needed for some models!)
-    // Works without API key for basic models
-    HUGGINGFACE_API_KEY: '', // Optional - get from https://huggingface.co/settings/tokens
-    
-    // Google Gemini (FREE Tier Available)
-    // Get API key from: https://makersuite.google.com/app/apikey
-    GEMINI_API_KEY: '', // Add your Gemini API key here
-    
-    // OpenAI API (Paid, but has free tier)
-    OPENAI_API_KEY: '', // Add your OpenAI API key here
+    AI_SERVICE: 'groq',
+    GROQ_API_KEY: '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',
+    HUGGINGFACE_API_KEY: '',
+    GEMINI_API_KEY: '',
+    OPENAI_API_KEY: '',
     OPENAI_MODEL: 'gpt-3.5-turbo'
 };
-
-// FREE AI Services Guide:
-// 
-// 1. GROQ (Recommended - Fastest & Easiest)
-//    - Get free API key: https://console.groq.com/keys
-//    - Very generous free tier
-//    - Set AI_SERVICE: 'groq' and add GROQ_API_KEY
-//
-// 2. HUGGING FACE (Works without API key!)
-//    - Can work without API key (limited)
-//    - Better with API key: https://huggingface.co/settings/tokens
-//    - Set AI_SERVICE: 'huggingface'
-//
-// 3. GEMINI (Google - Free Tier)
-//    - Get free API key: https://makersuite.google.com/app/apikey
-//    - Generous free tier
-//    - Set AI_SERVICE: 'gemini' and add GEMINI_API_KEY
-//
-// 4. FREE MODE (Current - No setup needed)
-//    - Works immediately, no API key
-//    - Set AI_SERVICE: 'free'
-
