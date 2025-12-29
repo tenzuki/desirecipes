@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Recipies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="grid-pattern"></div>
+    
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="brand-icon">🍳</span>
+                <span class="brand-text">Desi Recipies</span>
+            </div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="search-dish">
+                    <span class="nav-tab-icon">🔍</span>
+                    <span class="nav-tab-label">Search</span>
+                </button>
+                <button class="nav-tab" data-tab="search-ingredients">
+                    <span class="nav-tab-icon">🥕</span>
+                    <span class="nav-tab-label">Ingredients</span>
+                </button>
+                <button class="nav-tab" data-tab="ai-assistant">
+                    <span class="nav-tab-icon">🤖</span>
+                    <span class="nav-tab-label">AI Chef</span>
+                </button>
+                <button class="nav-tab" data-tab="contact">
+                    <span class="nav-tab-icon">📧</span>
+                    <span class="nav-tab-label">Contact</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Discover</span>
+                    <span class="title-line highlight">Amazing Recipes</span>
+                </h1>
+                <p class="hero-subtitle">Find the perfect recipe by dish name or available ingredients</p>
+            </div>
+        </section>
+
+        <!-- Search by Dish Tab -->
+        <div class="tab-content active" id="search-dish">
+            <div class="search-section">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="dish-input" 
+                            class="search-input" 
+                            placeholder="Search for any dish... (e.g., Pasta, Chicken, Pancakes)"
+                            autocomplete="off"
+                        >
+                        <button id="search-dish-btn" class="search-button">
+                            <span class="btn-text">Search</span>
+                            <svg class="btn-loader" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32">
+                                    <animate attributeName="stroke-dasharray" dur="2s" values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
+                                    <animate attributeName="stroke-dashoffset" dur="2s" values="0;-16;-32;-32" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="dish-results" class="results-container"></div>
+        </div>
+
+        <!-- Search by Ingredients Tab -->
+        <div class="tab-content" id="search-ingredients">
+            <div class="search-section">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2v20M2 12h20"></path>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="ingredient-input" 
+                            class="search-input" 
+                            placeholder="Add an ingredient and press Enter"
+                            autocomplete="off"
+                        >
+                        <button id="add-ingredient-btn" class="add-button">
+                            <span>Add</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="ingredients-list" class="ingredients-container"></div>
+                <button id="search-ingredients-btn" class="primary-button">
+                    <span class="btn-text">Find Recipes</span>
+                    <svg class="btn-loader" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32">
+                            <animate attributeName="stroke-dasharray" dur="2s" values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
+                            <animate attributeName="stroke-dashoffset" dur="2s" values="0;-16;-32;-32" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </button>
+            </div>
+            <div id="ingredients-results" class="results-container"></div>
+        </div>
+
+        <!-- AI Assistant Tab -->
+        <div class="tab-content" id="ai-assistant">
+            <div class="ai-container">
+                <div class="ai-header">
+                    <div class="ai-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div class="ai-header-text">
+                        <h2>AI Cooking Assistant</h2>
+                        <p>Ask me anything about cooking, recipes, or get personalized suggestions!</p>
+                    </div>
+                </div>
+                <div id="ai-chat" class="ai-chat-container"></div>
+                <div class="ai-input-container">
+                    <div class="ai-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="ai-input" 
+                            class="ai-input" 
+                            placeholder="Ask me anything... (e.g., 'How do I make pasta?', 'Substitute for eggs?', 'Cooking tips?')"
+                            autocomplete="off"
+                        >
+                        <button id="ai-send-btn" class="ai-send-button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="ai-suggestions">
+                        <button class="suggestion-chip" data-suggestion="What are some easy dinner recipes?">Easy Dinners</button>
+                        <button class="suggestion-chip" data-suggestion="How do I substitute eggs in baking?">Egg Substitutes</button>
+                        <button class="suggestion-chip" data-suggestion="What are healthy cooking tips?">Healthy Tips</button>
+                        <button class="suggestion-chip" data-suggestion="How do I make my pasta taste better?">Pasta Tips</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indian & Kerala Recipes Tab -->
+        <div class="tab-content" id="indian-kerala">
+            <div class="cuisine-header">
+                <h2 class="cuisine-title">🇮🇳 Indian & Kerala Cuisine</h2>
+                <p class="cuisine-subtitle">Discover authentic recipes from top restaurants and traditional Kerala dishes</p>
+            </div>
+            <div class="cuisine-filters">
+                <button class="filter-btn active" data-filter="all">All Recipes</button>
+                <button class="filter-btn" data-filter="kerala">Kerala Special</button>
+                <button class="filter-btn" data-filter="restaurant">Restaurant Style</button>
+                <button class="filter-btn" data-filter="vegetarian">Vegetarian</button>
+                <button class="filter-btn" data-filter="non-vegetarian">Non-Vegetarian</button>
+            </div>
+            <div id="indian-kerala-results" class="results-container"></div>
+        </div>
+
+        <!-- Contact Tab -->
+        <div class="tab-content" id="contact">
+            <div class="contact-container">
+                <div class="contact-header">
+                    <h2>Share Your Recipe</h2>
+                    <p>Have a delicious recipe to share? Send it to us and we'll add it to our collection!</p>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name *</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Your Email *</label>
+                        <input type="email" id="contact-email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-recipe-name">Recipe Name *</label>
+                        <input type="text" id="contact-recipe-name" name="recipe-name" required placeholder="e.g., Kerala Fish Curry">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-cuisine">Cuisine Type</label>
+                        <select id="contact-cuisine" name="cuisine">
+                            <option value="">Select cuisine type</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-ingredients">Ingredients *</label>
+                        <textarea id="contact-ingredients" name="ingredients" required rows="4" placeholder="List all ingredients with measurements (e.g., 500g fish, 2 onions, 3 tomatoes...)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-instructions">Instructions *</label>
+                        <textarea id="contact-instructions" name="instructions" required rows="6" placeholder="Provide step-by-step cooking instructions..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-notes">Additional Notes (Optional)</label>
+                        <textarea id="contact-notes" name="notes" rows="3" placeholder="Any special tips, serving suggestions, or additional information..."></textarea>
+                    </div>
+                    <button type="submit" class="contact-submit-btn">
+                        <span class="btn-text">Send Recipe</span>
+                        <svg class="btn-loader" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32">
+                                <animate attributeName="stroke-dasharray" dur="2s" values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
+                                <animate attributeName="stroke-dashoffset" dur="2s" values="0;-16;-32;-32" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </button>
+                </form>
+                <div id="contact-message" class="contact-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="indian-kerala-recipes.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
